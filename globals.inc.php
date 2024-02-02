@@ -10,7 +10,7 @@ $baseDir = dirname($_SERVER['SCRIPT_FILENAME']);
 $incDir = "$baseDir/include";
 
 // Load accessory routines
-include_once "$incDir/base.php";
+include_once "$incDir/functions.inc.php";
 
 // Start session to store queries
 session_start();
