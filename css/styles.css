@@ -34,13 +34,14 @@ h1 {
 	font-size: 3em;
 }
 h2 {
-	font-size: 2em;
+	font-size: 3em;
+	color: white;
 }
 h3 {
-	font-size: 1.5em;
+	font-size: 2em;
 }
 h4 {
-	font-size: 1.25em;
+	font-size: 1em;
 }
 p {
 	font-size: 1em;
@@ -94,6 +95,10 @@ a {
 }
 
 .logo {
+	font-size: 4em;
+	text-shadow: 2px 2px 8px var(--shadow);
+}
+.title {
 	font-size: 3em;
 	text-shadow: 2px 2px 8px var(--shadow);
 }
@@ -226,19 +231,31 @@ input {
 	padding-top: 8em;
 	margin-bottom: 4em;
 }
+.content {
+	flex: 1;
+	top: 8em;
+	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding-top: 12em;
+	margin-bottom: 6em;
+}
 
 .container {
 	background-color: var(--fade8-w-color);
 	color: var(--text-b-color);
-	width: 90%;
+	width: 80%;
 	padding: 2em 3em;
 	border-radius: var(--border-radius2);
-	margin-top: 2vw;
-	margin-bottom: 2vw;
+	margin-top: 5vw;
+	margin-bottom: 1vw;
 }
 
 .container h2 {
-	margin-bottom: 0.5em;
+	margin-top: -1.2em;
+	margin-bottom: 0.2em;
 }
 
 .container h3 {
@@ -270,3 +287,24 @@ input {
 .info h3 {
 	font-size: 1em;
 }
+.rounded-table {
+	width: 100%;
+	border-collapse: separate;
+	border-spacing: 0;
+	border: 1px solid #ffffff00;
+	border-radius: 10px;
+}
+.rounded-table th,
+.rounded-table td {
+	padding: 10px;
+	border: 1px solid #ffffff7b;
+	border-radius: 10px;
+	text-align: left;
+}
+.rounded-table th {
+	background-color: #8e8e8edd;
+	font-weight: bold;
+}
+.rounded-table tr.row {
+	background-color: #a5a5a5a5;
+  }
