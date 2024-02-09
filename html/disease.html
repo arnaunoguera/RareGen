@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RareGen</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Roboto+Flex:wght@100;200;300;400;500;600;700;800;900;1000&family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet" />
+  </head>
+
+  <body>
+    <!-- BACKGROUND -->
+    <div class="background"></div>
+    <!-- HEADER -->
+    <header>
+      <a href="/index.html">
+        <h1 class="logo">RareGen</h1>
+      </a>
+      <div class="site-management">
+        <button class="user-entrance" id="signup" onmousedown="changeBackgroundColor(this, '#666666')"
+          onmouseup="revertBackgroundColor(this)" onmouseenter="changeBackgroundColor(this, '#BBBBBB')"
+          onmouseleave="revertBackgroundColor(this)" onclick="goToSignup()">Sign Up</button>
+        <button class="user-entrance" id="login" onmousedown="changeBackgroundColor(this, '#666666')"
+          onmouseup="revertBackgroundColor(this)" onmouseenter="changeBackgroundColor(this, '#BBBBBB')"
+          onmouseleave="revertBackgroundColor(this)" onclick="goToLogin()">Login</button>
+      </div>
+    </header>
+    <!-- BODY -->
+    <div class="content-search">
+      <div class="container">
+        <h2>DISEASE: Hurler syndrome</h2>
+        <h3> 607014</h3>
+        <p>The mucopolysaccharidoses are a group of inherited disorders caused by a lack of specific lysosomal enzymes
+          involved in the degradation of glycosaminoglycans (GAGs), or mucopolysaccharides. The accumulation of partially
+          degraded GAGs causes interference with cell, tissue, and organ function.
+        <br>
+        Deficiency of alpha-L-iduronidase can result in a wide range of phenotypic involvement with 3 major recognized
+          clinical entities: Hurler (MPS IH), Scheie (MPS IS; 607016), and Hurler-Scheie (MPS IH/S; 607015) syndromes. Hurler
+          and Scheie syndromes represent phenotypes at the severe and mild ends of the MPS I clinical spectrum, respectively,
+          and the Hurler-Scheie syndrome is intermediate in phenotypic expression (McKusick, 1972).
+        </p>  
+        <p>MPS I is more frequent than MPS II (Hunter syndrome; 309900), which has no corneal clouding and pursues a
+          slower course.
+        </p>
+        <div class="space"></div>
+      </div>
+      <div class="container">
+        <h3> SYMPTOMS </h3>
+        <p> The clinical features of Hurler syndrome include coarse facies, corneal clouding, mental retardation, hernias,
+          dysostosis multiplex, and hepatosplenomegaly. Children with Hurler syndrome appear normal at birth and develop the
+          characteristic appearance over the first years of life 
+        </p>
+        <div class="space"></div>
+      </div>
+      <div class="container">
+        <h3> TREATMENTS </h3>
+        <div class="space"></div>
+        <h4>Bone Marrow Transplantation (BMT)</h4>
+        <p>
+          Hugh-Jones (1983) pointed out the importance of early diagnosis of mucopolysaccharidoses because of the effectiveness
+          of bone marrow transplantation. He reported that hernia was a feature in 13 of 15 cases of MPS I and in 7 of 9 cases
+          of MPS II, and suggested that hernia before the age of 6 months may be a valuable diagnostic clue. 
+        </p>
+        <div class="space"></div>
+        <h4>Enzyme Replacement</h4>
+        <p>
+          Kakkis et al. (2001) treated 10 patients with MPS I (aged 5 to 22 years) with recombinant human alpha-L-iduronidase
+          at a dose of 125,000 U per kg of body weight given intravenously once weekly for 52 weeks. Hepatosplenomegaly 
+          decreased significantly in all patients, and the size of the liver was normal for body weight and age in 8 patients
+          by 26 weeks. The rate of growth in height and weight increased by a mean of 85%% and 131%, respectively, at 52 weeks
+          in the 6 prepubertal patients. The mean maximum range of motion of shoulder flexion and elbow extension increased
+          significantly. The number of episodes of apnea and hypopnea during sleep decreased by 61%. New York Heart Association
+          functional class improved by 1 or 2 classes in all patients. Urinary glycosaminoglycan excretion decreased after 3
+          to 4 weeks of treatment; the mean reduction at 52 weeks was 63% of baseline values. Five patients had transient
+          urticaria during infusions. Serum antibodies to alpha-L-iduronidase were detected in 4 patients.
+        </p>
+        
+      </div>
+      <div class = "container"> 
+        <table style = "border: 1px solid black;border-collapse:collapse">
+          <thead>
+            <tr>
+              <th style = "border: 1px solid black">Gene</th>
+              <th style = "border: 1px solid black">Chromosome</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style = "border: 1px solid black">IDUA</td>
+              <td style = "border: 1px solid black">4p16.3 </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- FOOTER -->
+    <footer>
+      <h4>© The RareGen GROUP 2024</h4>
+    </footer>
+    <script src="/js/index.js"></script>
+  </body>
+
+</html>
