@@ -1,3 +1,4 @@
+
 import pymysql
 import re
 import xml.etree.ElementTree as ET
@@ -49,10 +50,24 @@ for tab in (
 
 print('Success')
 
+## MUTATION TYPE
+sthEntryMutType = "INSERT INTO Mutation_type VALUES (%s,%s)"
+with connection.cursor() as c:
+    idMutType = 1
+    for mutation in ('Fake', 'Missense variant', 'Frameshift variant', 'Inframe insertion', 'Inframe deletion', 'Splice variant', 'Stop lost', 'Stop gained'):
+        c.execute(sthEntryMutType, (idMutType, mutation))
+        idMutType += 1
+
 ## DISEASE - GENE
 sthEntryAlias = "INSERT INTO Gene_alias VALUES (%s,%s)"
 sthEntryGene = "INSERT INTO Gene VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+sthEntryMutation = "INSERT INTO Mutation VALUES (%s,%s,%s,%s)"
+sthEntryDisease_has_mutation = "INSERT INTO Disease_has_Mutation VALUES (%s,%s)"
+sthEntryDisease = "INSERT INTO Disease VALUES (%s,%s, %s, '', '', '')" #only disease ID, name and Orphacode
+
 GENES = []
+DISEASES = []
+mutationid = 1
 with open("../data/disease_gene.xml") as f:
     tree = ET.parse('../data/disease_gene.xml')
     parser = ET.XMLParser(encoding='ISO-8859-1')
@@ -74,6 +89,12 @@ with open("../data/disease_gene.xml") as f:
                             for association in associationlist:
                                 if association.tag == "Gene":
                                     idGene = association.attrib['id']
+                                    #create fake mutation related to the disease (to relate gene to disease)
+                                    mutid = 'rsf' + str(mutationid).zfill(10)
+                                    mutationid += 1
+                                    with connection.cursor() as c:
+                                        c.execute(sthEntryMutation, (mutid, "Fake mutation for this dataset", 0, idGene))
+                                        c.execute(sthEntryDisease_has_mutation, (idDisease, mutid))
                                     if idGene not in GENES:
                                         GeneLocus = ""
                                         GeneName = ""
@@ -107,7 +128,7 @@ with open("../data/disease_gene.xml") as f:
                                             elif geneInfo.tag == "ExternalReferenceList":
                                                 EnsemblID = ""
                                                 GenatlasID = ""
-                                                HgncID = ""
+                                                HgncID = int()
                                                 OmimID = int()
                                                 SwissprotID = ""
                                                 for reference in geneInfo:
@@ -136,13 +157,18 @@ with open("../data/disease_gene.xml") as f:
                                         GENES.append(idGene)
                                         with connection.cursor() as c:
                                             c.execute(sthEntryGene, (idGene, GeneName, GeneType, GeneLocus, EnsemblID, OmimID, GenatlasID, HgncID, '', GeneSymbol, SwissprotID))
-                                        print(GeneName)
+                                        #print(GeneName)
                                 elif association.tag == 'DisorderGeneAssociationType':
                                     for assocname in association:
                                         if assocname.tag == "Name":
                                             DGassocType = assocname.text
                                             #print(DGassocType)
                                 #print(association.tag, association.attrib)
-print('Success1')
+                if idDisease not in DISEASES:
+                    DISEASES.append(idDisease)
+                    with connection.cursor() as c:
+                        c.execute(sthEntryDisease, (idDisease, DiseaseName, OrphaCode))
+                print(DiseaseName)
+
 connection.close()
 print('Success')
