@@ -2,6 +2,7 @@
 import pymysql
 import re
 import xml.etree.ElementTree as ET
+import csv
 
 
 #Database connection
@@ -40,6 +41,7 @@ for tab in (
     'Paper', 
     'Paper_has_Author', 
     'Patient_Association', 
+    'Prevalence',
     'Publisher'
     ):
     try:
@@ -168,7 +170,66 @@ with open("../data/disease_gene.xml") as f:
                     DISEASES.append(idDisease)
                     with connection.cursor() as c:
                         c.execute(sthEntryDisease, (idDisease, DiseaseName, OrphaCode))
-                print(DiseaseName)
+                #print(DiseaseName)
+
+print('Successfully read disease_gene file')
+
+## PREVALENCE
+
+sthEntryPrevalence = "INSERT INTO Prevalence VALUES (%s,%s, %s, %s,%s,%s,%s,%s)"
+
+with open("../data/epidemiology.xml") as f:
+    tree = ET.parse('../data/epidemiology.xml')
+    parser = ET.XMLParser(encoding='ISO-8859-1')
+    root = tree.getroot()
+    for child in root:
+        if child.tag == "DisorderList":
+            for disorder in child:
+                DisorderID = disorder.attrib["id"]
+                PrevalenceID  = ""
+                SourceName = ""
+                PrevalenceType = ""
+                PrevalenceClass  = ""
+                ValMoy = ""
+                PrevalenceGeographic =  ""
+                PrevalenceValidation = ""
+                for info in disorder:
+                    if info.tag == "PrevalenceList":
+                        for idPrevalence in info:
+                            PrevalenceID = idPrevalence.attrib["id"]   
+                            for prevalence in idPrevalence:
+                                if prevalence.tag ==  "Source":
+                                    SourceName = prevalence.text
+                                elif prevalence.tag == "PrevalenceType":
+                                    for prevType in prevalence:
+                                        PrevalenceType = prevType.text
+                                elif prevalence.tag == "PrevalenceClass":
+                                    for prevClass in prevalence:
+                                        PrevalenceClass= prevClass.text
+                                elif prevalence.tag == "ValMoy":
+                                    ValMoy = prevalence.text
+                                elif prevalence.tag == "PrevalenceGeographic":
+                                    for prevGeo in prevalence:
+                                        PrevalenceGeographic= prevGeo.text
+                                elif prevalence.tag == "PrevalenceValidationStatus":
+                                    for prevVal in prevalence:
+                                        PrevalenceValidation= prevVal.text
+                            with connection.cursor() as c:
+                                c.execute(sthEntryPrevalence, (PrevalenceID, SourceName, PrevalenceType, PrevalenceClass, PrevalenceGeographic, ValMoy, PrevalenceValidation, DisorderID))
+print('Successfully read epidemiology file')
+
+## COUNTRY
+sthEntryCountry = "INSERT INTO Country VALUES (%s,%s)"
+
+# Open the TSV file and read its contents
+with open('../data/countries.tab', 'r', newline='', encoding='utf-8') as file:
+    # Create a CSV reader with tab as the delimiter
+    tsv_reader = csv.reader(file, delimiter='\t')
+    # Iterate through the rows in the TSV file
+    with connection.cursor() as c:
+        for row in tsv_reader:
+            country_id, country_name = row
+            c.execute(sthEntryCountry, (country_id, country_name)) 
 
 connection.close()
 print('Success')
