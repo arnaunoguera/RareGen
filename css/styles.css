@@ -175,6 +175,22 @@ footer h4:last-child {
 	margin: 0 auto; 
 }
 
+.search-bar2{
+    display: flex;
+    align-items: center;
+    height:3em;
+    width: 90%;
+    background-color: var(--fade8-w-color);
+    color: var(--text-b-color);
+    font-size: 10px ; 
+    border: 1px solid black;
+    border-radius: 0;
+    padding-left: 1em; 
+    justify-content: flex-start; 
+	margin-bottom: 15px;
+	margin-top: 15px;
+}
+
 .search-icon {
 	display: flex;
 	flex-direction: column;
@@ -233,6 +249,18 @@ input {
 	justify-content: center;
 	padding-top: 8em;
 	margin-bottom: 4em;
+}
+.sign-up {
+	flex: 1;
+	top: 8em;
+	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding-top: 8em;
+	width: 50%;
+	margin: 0 auto 4em auto;
 }
 .content {
 	flex: 1;
@@ -325,6 +353,18 @@ input {
     cursor: pointer;
 	height: 100%;
 	border-radius: 0 var(--border-radius) var(--border-radius) 0; 
+}
+
+.submit-button {
+    font-size: 18px; 
+    padding: 10px 20px; 
+    background-color: #2d507a; 
+    color: #fff; 
+    border: none;
+    border-radius: 5px; 
+    cursor: pointer;
+	height: 100%;
+	border-radius: var(--border-radius); 
 }
 
 .search-dropdown {

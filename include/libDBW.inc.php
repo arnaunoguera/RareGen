@@ -7,8 +7,12 @@ function headerDBW() {
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RareGen</title>
+<link rel="icon" type="image/x-icon" href="images/DNA.png" />
 <link rel="stylesheet" href="css/styles.css">
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Roboto+Flex:wght@100;200;300;400;500;600;700;800;900;1000&family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="DataTable/jquery.dataTables.min.css"/>
+<script type="text/javascript" src="DataTable/jquery-2.2.0.min.js"></script>
+<script type="text/javascript" src="DataTable/jquery.dataTables.min.js"></script>
 </head>
 <body>
 <!-- BACKGROUND -->
@@ -19,9 +23,9 @@ function headerDBW() {
     <h1 class="logo">RareGen</h1>
   </a>
   <div class="site-management">
-    <button class="user-entrance" id="signup" onmousedown="changeBackgroundColor(this, \'#666666\')"
-      onmouseup="revertBackgroundColor(this)" onmouseenter="changeBackgroundColor(this, \'#BBBBBB\')"
-      onmouseleave="revertBackgroundColor(this)" onclick="goToSignup()">Sign Up</button>
+    <button class="user-entrance" id="signup" onmousedown="changeBackgroundColor(this, \'#666666\')" 
+    onmouseup="revertBackgroundColor(this)" onmouseenter="changeBackgroundColor(this, \'#BBBBBB\')" 
+    onmouseleave="revertBackgroundColor(this)" onclick="javascript:window.location.href=\'sign_up.php\';">Sign Up</button>
     <button class="user-entrance" id="login" onmousedown="changeBackgroundColor(this, \'#666666\')"
       onmouseup="revertBackgroundColor(this)" onmouseenter="changeBackgroundColor(this, \'#BBBBBB\')"
       onmouseleave="revertBackgroundColor(this)" onclick="goToLogin()">Login</button>
