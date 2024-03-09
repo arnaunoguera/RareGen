@@ -43,10 +43,12 @@ if ($_REQUEST['search']) {
     if ($geneSearch){
         $ORcondsGene = [];
         foreach (array_merge([$query], explode(' ',$query)) as $wd){
-            foreach (array_values($geneFields) as $field) {
-                $ORcondsGene[] = $field." like '%".$wd."%'";
-                //$ORconds[] = "MATCH (" . $field . ") AGAINST ('" . $wd . "' "
-                //        . "IN BOOLEAN MODE)";
+            if (strlen($wd) > 2){
+                foreach (array_values($geneFields) as $field) {
+                    $ORcondsGene[] = $field." like '%".$wd."%'";
+                    //$ORconds[] = "MATCH (" . $field . ") AGAINST ('" . $wd . "' "
+                    //        . "IN BOOLEAN MODE)";
+                }
             }
         }
         $ANDcondsGene[] = "(" . join(" OR ", $ORcondsGene) . ")";
@@ -54,8 +56,10 @@ if ($_REQUEST['search']) {
     if ($diseaseSearch){
         $ORcondsDis = [];
         foreach (array_merge([$query], explode(' ',$query)) as $wd){
-            foreach (array_values($diseaseFields) as $field) {
-                $ORcondsDis[] = $field." like '%".$wd."%'";
+            if (strlen($wd) > 2){
+                foreach (array_values($diseaseFields) as $field) {
+                    $ORcondsDis[] = $field." like '%".$wd."%'";
+                }
             }
         }
         $ANDcondsDis[] = "(" . join(" OR ", $ORcondsDis) . ")";
@@ -63,8 +67,10 @@ if ($_REQUEST['search']) {
     if ($assocSearch){
         $ORcondsAssoc = [];
         foreach (array_merge([$query], explode(' ',$query)) as $wd){
-            foreach (array_values($associationFields) as $field) {
-                $ORcondsAssoc[] = $field." like '%".$wd."%'";
+            if (strlen($wd) > 2){
+                foreach (array_values($associationFields) as $field) {
+                    $ORcondsAssoc[] = $field." like '%".$wd."%'";
+                }
             }
         }
         $ANDcondsAssoc[] = "(" . join(" OR ", $ORcondsAssoc) . ")";
@@ -134,9 +140,22 @@ if ($mysqli) {
     print errorPage("Connection failed", mysqli_connect_error());
 }
 
+$results = false;
+if ($rsGene and mysqli_num_rows($rsGene)){
+    $results = true;
+    $geneResults = true;
+}
+if ($rsDis and mysqli_num_rows($rsDis)){
+    $results = true;
+    $diseaseResults = true;
+}
+if ($rsAssoc and mysqli_num_rows($rsAssoc)){
+    $results = true;
+    $assocResults = true;
+}
 //     We check whether there are results to show
-if (!mysqli_num_rows($rsGene) and !mysqli_num_rows($rsDis) and !mysqli_num_rows($rsAssoc)) {
-    print errorPage("Not Found", "No results found.");
+if (!$results) {
+    print errorPage("No results", "0 results match " . $query);
     exit();
 }
 
@@ -149,13 +168,13 @@ if (!mysqli_num_rows($rsGene) and !mysqli_num_rows($rsDis) and !mysqli_num_rows(
     <h1>Search results: <?= $query ?></h1>
 </div>
 <?php
-if (mysqli_num_rows($rsGene)) {
+if ($geneResults) {
 ?>
     <div class="content-search">
     <div class="container">
     <h2 class="title">Results: Genes</h2>
     <p>Num Hits: <?= mysqli_num_rows($rsGene) ?></p>
-            <table border="0" cellspacing="2" cellpadding="4" id="dataTable" class = "rounded-table">
+            <table border="0" cellspacing="2" cellpadding="4" id="dataTableGenes" class = "rounded-table">
                 <thead>
                     <tr>
                         <th>Symbol</th>
@@ -192,13 +211,13 @@ if (mysqli_num_rows($rsGene)) {
 ?>
 
 <?php
-if (mysqli_num_rows($rsDis)) {
+if ($diseaseResults) {
 ?>
     <div class="content-search">
     <div class="container">
     <h2 class="title">Results: Diseases</h2>
     <p>Num Hits: <?= mysqli_num_rows($rsDis) ?></p>
-            <table border="0" cellspacing="2" cellpadding="4" id="dataTable" class = "rounded-table">
+            <table border="0" cellspacing="2" cellpadding="4" id="dataTableDiseases" class = "rounded-table">
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -221,13 +240,13 @@ if (mysqli_num_rows($rsDis)) {
 ?>
 
 <?php
-if (mysqli_num_rows($rsAssoc)) {
+if ($assocResults) {
 ?>
     <div class="content-search">
     <div class="container">
     <h2 class="title">Results: Patient Associations</h2>
     <p>Num Hits: <?= mysqli_num_rows($rsAssoc) ?></p>
-            <table border="0" cellspacing="2" cellpadding="4" id="dataTable" class = "rounded-table">
+            <table border="0" cellspacing="2" cellpadding="4" id="dataTableAssociations" class = "rounded-table">
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -251,9 +270,11 @@ if (mysqli_num_rows($rsAssoc)) {
 
 <p class="button"><a href="index.php?new=1">New Search</a></p>
 <script type="text/javascript">
-<!-- this activates the DataTable element when page is loaded-->
     $(document).ready(function () {
-        $('#dataTable').DataTable();
+        $('#dataTableGenes').DataTable();
+        $('#dataTableDiseases').DataTable();
+        $('#dataTableAssociations').DataTable();
     });
 </script>
+
 <?= footerDBW() ?>

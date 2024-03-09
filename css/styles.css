@@ -355,6 +355,20 @@ input {
 	border-radius: 0 var(--border-radius) var(--border-radius) 0; 
 }
 
+.show-password-button {
+    font-size: 18px;
+    padding: 10px 20px;
+    background-color: #2d507a;
+    text-align: center;
+	vertical-align: auto;
+    color: white;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    height: 100%;
+    line-height: 60%;
+}
+
 .submit-button {
     font-size: 18px; 
     padding: 10px 20px; 

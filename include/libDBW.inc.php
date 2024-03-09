@@ -44,7 +44,7 @@ function footerDBW() {
       <br> Contact us via: notarealemailaddress@gmail.com
     </h4>
   </footer>
-  <script src="js/index.js"></script>
+  <script src="js/index.js" defer></script>
   </body>
 
 </html>';
@@ -57,3 +57,4 @@ function errorPage($title, $text) {
         <p>'.$text.'</p>
   </div>'. footerDBW();
 }
+
