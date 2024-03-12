@@ -164,16 +164,18 @@ if (!$results) {
 
 <!--  Results table formated with DataTable-->
 <?= headerDBW()?>
-<div class = "content-search">
-    <h1>Search results: <?= $query ?></h1>
+<div class = "content-search_searchtitle">
+    <div class="container_searchtitle">
+        <h1 class="search-title">Search results: <?= $query ?></h1>
+    </div>
 </div>
 <?php
 if ($geneResults) {
 ?>
-    <div class="content-search">
-    <div class="container">
-    <h2 class="title">Results: Genes</h2>
-    <p>Num Hits: <?= mysqli_num_rows($rsGene) ?></p>
+    <div class="content-search_searchresults">
+    <div class="container_searchresults">
+    <h2 class="title_searchresults">Results: Genes</h2>
+    <p class="hits">Num Hits: <?= mysqli_num_rows($rsGene) ?></p>
             <table border="0" cellspacing="2" cellpadding="4" id="dataTableGenes" class = "rounded-table">
                 <thead>
                     <tr>
@@ -191,7 +193,7 @@ if ($geneResults) {
                 <tbody>
                     <?php while ($rsG = mysqli_fetch_assoc($rsGene)) { ?>
                     <tr>
-                        <td><a href="getDisease.php?idCode=<?= $rsG['idGene'] ?>"><?= $rsG['Symbol'] ?></a></td>
+                        <td><a href="getGene.php?idCode=<?= $rsG['idGene'] ?>"><?= $rsG['Symbol'] ?></a></td>
                         <td><?= $rsG['Name'] ?></td>
                         <td><?= $rsG['Locus'] ?></td>
                         <td><?= $rsG['Ensembl_id'] ?></td>
@@ -213,10 +215,10 @@ if ($geneResults) {
 <?php
 if ($diseaseResults) {
 ?>
-    <div class="content-search">
-    <div class="container">
-    <h2 class="title">Results: Diseases</h2>
-    <p>Num Hits: <?= mysqli_num_rows($rsDis) ?></p>
+    <div class="content-search_searchresults">
+    <div class="container_searchresults">
+    <h2 class="title_searchresults">Results: Diseases</h2>
+    <p class="hits">Num Hits: <?= mysqli_num_rows($rsDis) ?></p>
             <table border="0" cellspacing="2" cellpadding="4" id="dataTableDiseases" class = "rounded-table">
                 <thead>
                     <tr>
@@ -227,7 +229,7 @@ if ($diseaseResults) {
                 <tbody>
                     <?php while ($rsD = mysqli_fetch_assoc($rsDis)) { ?>
                     <tr>
-                        <td><a href="getGene.php?idCode=<?= $rsD['idDiseases'] ?>"><?= $rsD['Name'] ?></a></td>
+                        <td><a href="getDisease.php?idCode=<?= $rsD['idDiseases'] ?>"><?= $rsD['Name'] ?></a></td>
                         <td><?= $rsD['Orphacode'] ?></td>
                     </tr>
                     <?php } ?>
@@ -242,10 +244,10 @@ if ($diseaseResults) {
 <?php
 if ($assocResults) {
 ?>
-    <div class="content-search">
-    <div class="container">
-    <h2 class="title">Results: Patient Associations</h2>
-    <p>Num Hits: <?= mysqli_num_rows($rsAssoc) ?></p>
+    <div class="content-search_searchresults">
+    <div class="container_searchresults">
+    <h2 class="title_searchresults">Results: Patient Associations</h2>
+    <p class="hits">Num Hits: <?= mysqli_num_rows($rsAssoc) ?></p>
             <table border="0" cellspacing="2" cellpadding="4" id="dataTableAssociations" class = "rounded-table">
                 <thead>
                     <tr>
@@ -256,7 +258,7 @@ if ($assocResults) {
                 <tbody>
                     <?php while ($rsA = mysqli_fetch_assoc($rsAssoc)) { ?>
                     <tr>
-                        <td><a href="getGene.php?idCode=<?= $rsA['idPatient_Associations'] ?>"><?= $rsA['Name'] ?></a></td>
+                        <td><a href="getAssoc.php?idCode=<?= $rsA['idPatient_Associations'] ?>"><?= $rsA['Name'] ?></a></td>
                         <td><?= $rsA['Country_name'] ?></td>
                     </tr>
                     <?php } ?>
@@ -267,6 +269,9 @@ if ($assocResults) {
     <?php
 }
 ?>
+
+<div class="container_end_searchresults">
+</div>
 
 <p class="button"><a href="index.php?new=1">New Search</a></p>
 <script type="text/javascript">

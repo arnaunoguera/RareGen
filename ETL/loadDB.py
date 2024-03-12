@@ -27,7 +27,8 @@ for tab in (
     'Author', 
     'Country', 
     'Country_has_Patient_Association', 
-    'Disease', 
+    'Disease',
+    'Disease_alias', 
     'Disease_has_Mutation', 
     'Disease_has_Paper',
     'Disease_has_Patient_Association', 
@@ -42,7 +43,8 @@ for tab in (
     'Paper_has_Author', 
     'Patient_Association', 
     'Prevalence',
-    'Publisher'
+    'Publisher',
+    'Symptom'
     ):
     try:
         print("Cleaning {}".format(tab))
@@ -65,7 +67,7 @@ sthEntryAlias = "INSERT INTO Gene_alias VALUES (%s,%s)"
 sthEntryGene = "INSERT INTO Gene VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
 sthEntryMutation = "INSERT INTO Mutation VALUES (%s,%s,%s,%s)"
 sthEntryDisease_has_mutation = "INSERT INTO Disease_has_Mutation VALUES (%s,%s)"
-sthEntryDisease = "INSERT INTO Disease VALUES (%s,%s, %s, '', '', '')" #only disease ID, name and Orphacode
+sthEntryDisease = "INSERT INTO Disease VALUES (%s,%s, %s, '', '')" #only disease ID, name and Orphacode
 
 GENES = []
 DISEASES = []
@@ -230,6 +232,62 @@ with open('../data/countries.tab', 'r', newline='', encoding='utf-8') as file:
         for row in tsv_reader:
             country_id, country_name = row
             c.execute(sthEntryCountry, (country_id, country_name)) 
+print('Successfully read countries file')
+
+## DISEASE SYNONYMS
+sthEntryDisSyn = "INSERT INTO Disease_alias VALUES (%s,%s)"
+with open('../data/ORPHAnomenclature_MasterFile_2023.tab', 'r', newline='', encoding='utf-8') as file:
+    # Create a CSV reader with tab as the delimiter
+    tsv_reader = csv.reader(file, delimiter='\t')
+    # Skip the header
+    next(tsv_reader)
+    # Iterate through the rows in the TSV file
+    with connection.cursor() as c:
+        for row in tsv_reader:
+            ORPHAcode, PreferredTerm, Synonyms, ICDcodes = row
+            if Synonyms == "": #if there is no synonym in that row, skip 
+                continue
+            #print(ORPHAcode + '   ' + Synonyms)
+            c.execute(sthEntryDisSyn, (Synonyms, ORPHAcode)) 
+print('Successfully read disease synonyms')
+
+## SYMPTOMS
+sthEntrySymptom = "INSERT INTO Symptom VALUES (%s,%s,%s)"
+with open("../data/phenotype.xml") as f:
+    tree = ET.parse('../data/phenotype.xml')
+    parser = ET.XMLParser(encoding='ISO-8859-1')
+    root = tree.getroot()
+    for child in root:
+        if child.tag == "HPODisorderSetStatusList":
+            for disorderlist in child:
+                if disorderlist.tag == "HPODisorderSetStatus":
+                    for disorder in disorderlist:
+                        if disorder.tag == "Disorder":
+                            idDisease = disorder.attrib['id']
+                            #print(idDisease)
+                            for info in disorder:
+                                if info.tag == "OrphaCode":
+                                    OrphaCode = info.text
+                                    #print(OrphaCode)
+                                elif info.tag == "HPODisorderAssociationList":
+                                    for disorderassociation in info:
+                                        HPOTerm = ''
+                                        HPOFrequency = ''
+                                        for HPO in disorderassociation:
+                                            if HPO.tag == "HPO":
+                                                for HPOinfo in HPO:
+                                                    if HPOinfo.tag == "HPOTerm":
+                                                        HPOTerm = HPOinfo.text
+                                                        #print(HPOTerm)
+                                            elif HPO.tag == "HPOFrequency":
+                                                for HPOinfo in HPO:
+                                                    if HPOinfo.tag == 'Name':
+                                                        HPOFrequency = HPOinfo.text
+                                                        #print(HPOFrequency)
+                                        with connection.cursor() as c:
+                                            c.execute(sthEntrySymptom, (HPOTerm, HPOFrequency, idDisease)) 
+                                        #print(idDisease, OrphaCode, HPOTerm, HPOFrequency, sep = '\t')
+print('Successfully read symptoms')
 
 connection.close()
 print('Success')

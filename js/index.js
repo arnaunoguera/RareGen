@@ -116,3 +116,29 @@ function togglePasswordVisibility(passwordFieldId) {
 	}
 }
 
+// Open the login modal
+function openLoginModal() {
+    var modal = document.getElementById("loginModal");
+    var form = document.getElementById("loginForm");
+    var usernameInput = document.getElementById("username");
+    var passwordInput = document.getElementById("password1");
+    usernameInput.value = "";
+    passwordInput.value = "";
+
+    // Show the modal
+	passwordInput.type = "password";
+    modal.style.display = "block";
+}
+// Close the login modal
+function closeLoginModal() {
+    var modal = document.getElementById("loginModal");
+    modal.style.display = "none";
+}
+
+// Prevent the form submission for now
+document.getElementById("loginForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+    // Here you can add your code to handle the form submission, like AJAX request to validate the credentials
+});
+
+

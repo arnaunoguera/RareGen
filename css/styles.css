@@ -34,6 +34,7 @@
 }
 h1 {
 	font-size: 3em;
+	color: white;
 }
 h2 {
 	font-size: 3em;
@@ -391,6 +392,172 @@ input {
 	border-radius: 4px;
 }
 
+/* Modal styles */
+.modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
 
+.modal-content {
+	background-color: rgba(209,211,213,255);
+	margin: 15% auto;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 50%;
+}
+
+.close {
+	color: black;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+/* Apply custom styles to labels */
+.modal-content label {
+	color: black; 
+	margin-left: 30px;
+	font-size: 20px;
+	font-weight: bold; 
+	display:block;
+}
+
+.modal-content input{
+	display: inline-block;
+    align-items: center;
+    height:2.5em;
+    width: 90%;
+    background-color: var(--fade8-w-color);
+    color: var(--text-b-color);
+    font-size: 16px ; 
+    border: 1px solid black;
+    border-radius: 0;
+    padding-left: 1em; 
+    justify-content: flex-start; 
+	margin-bottom: 15px;
+	margin-top: 15px;
+	margin-left :30px;
+	margin-right:50px;
+}
+
+.modal-content h2{
+	font-size: 3em;
+	font-weight: bold;
+	color:white;
+	margin-left: 30px;
+	text-shadow: 2px 2px 8px var(--shadow-title2);
+	margin-bottom:20px;
+}
+
+/* Additional style for password container */
+.password-container {
+	position: relative;
+	display: flex; 
+}
+
+
+.password-container input[type="password"] {
+	flex: 1; /* Adjust padding to accommodate the button */
+	width: 50%;
+	margin-right:60px;
+}
+
+.password-container .show-password-button {
+	position: absolute;
+	top: 50%;
+	height:55%;
+	right:0;
+	transform: translateY(-50%);
+	padding: 5px 10px;
+	background-color: #2d507a;
+	color: white;
+	border: none;
+	border-radius: 0;
+	cursor: pointer;
+	margin-right:60px;
+}
+
+/* START: search.php */
+.content-search_searchresults {
+	flex: 1;
+	top: 8em;
+	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding-top: 1em;
+	margin-bottom: 1em;
+}
+
+.container_searchresults {
+	background-color: var(--fade8-w-color);
+	color: var(--text-b-color);
+	width: 80%;
+	padding: 2em 3em;
+	border-radius: var(--border-radius2);
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+.container_end_searchresults {
+	margin-bottom: 5em;
+}
+
+.title_searchresults {
+	font-size: 3em;
+	font-weight: bold;
+	text-shadow: 2px 2px 8px var(--shadow-title2);
+	margin-top: -60px;
+}
+
+.search-title {
+	font-size: 3em;
+	font-weight: bold;
+	text-shadow: 2px 2px 8px var(--shadow-title2);
+}
+
+.content-search_searchtitle {
+	flex: 1;
+	top: 8em;
+	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.container_searchtitle {
+	background-color: var(--fade8-w-color);
+	color: var(--text-b-color);
+	width: 80%;
+	padding: 2em 3em;
+	border-radius: var(--border-radius2);
+	margin-top: 8vw;
+	margin-bottom: 1vw;
+}
+
+.hits {
+	font-size: 1.2em;
+	font-weight: bold;
+	margin-top: 1vw;
+	margin-bottom: 0.5vw;
+}
+/* END: search.php */
 
 

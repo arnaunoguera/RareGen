@@ -1,0 +1,257 @@
+
+<!--  Results table formated with DataTable-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RareGen</title>
+<link rel="icon" type="image/x-icon" href="images/DNA.png" />
+<link rel="stylesheet" href="css/styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Roboto+Flex:wght@100;200;300;400;500;600;700;800;900;1000&family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="DataTable/jquery.dataTables.min.css"/>
+<script type="text/javascript" src="DataTable/jquery-2.2.0.min.js"></script>
+<script type="text/javascript" src="DataTable/jquery.dataTables.min.js"></script>
+</head>
+<body>
+<!-- BACKGROUND -->
+<div class="background"></div>
+<!-- HEADER -->
+<header>
+  <a href="index.php">
+    <h1 class="logo">RareGen</h1>
+  </a>
+  <div class="site-management">
+    <button class="user-entrance" id="signup" onmousedown="changeBackgroundColor(this, '#666666')" 
+    onmouseup="revertBackgroundColor(this)" onmouseenter="changeBackgroundColor(this, '#BBBBBB')" 
+    onmouseleave="revertBackgroundColor(this)" onclick="javascript:window.location.href='sign_up.php';">Sign Up</button>
+    <button class="user-entrance" id="login" onmousedown="changeBackgroundColor(this, '#666666')"
+      onmouseup="revertBackgroundColor(this)" onmouseenter="changeBackgroundColor(this, '#BBBBBB')"
+      onmouseleave="revertBackgroundColor(this)" onclick="goToLogin()">Login</button>
+  </div>
+</header>
+</body>
+</html><div class = "content-search">
+    <h1>Search results: Gla</h1>
+</div>
+    <div class="content-search">
+    <div class="container">
+    <h2 class="title">Results: Genes</h2>
+    <p>Num Hits: 9</p>
+            <table border="0" cellspacing="2" cellpadding="4" id="dataTableGenes" class = "rounded-table">
+                <thead>
+                    <tr>
+                        <th>Symbol</th>
+                        <th>Name</th>
+                        <th>Locus</th>
+                        <th>Ensembl ID</th>
+                        <th>OMIM ID</th>
+                        <th>GenAtlas ID</th>
+                        <th>HGNC ID</th>
+                        <th>SwissProt ID</th>
+                        <th>Alias</th>
+                    </tr>
+                </thead>
+                <tbody>
+                                        <tr>
+                        <td><a href="getDisease.php?idCode=16135">GLA</a></td>
+                        <td>galactosidase alpha</td>
+                        <td>Xq22.1</td>
+                        <td>ENSG00000102393</td>
+                        <td>300644</td>
+                        <td>GLA</td>
+                        <td>4296</td>
+                        <td>P06280</td>
+                        <td>GALA</td>
+                    </tr>
+                                        <tr>
+                        <td><a href="getDisease.php?idCode=16511">MYOC</a></td>
+                        <td>myocilin</td>
+                        <td>1q24.3</td>
+                        <td>ENSG00000034971</td>
+                        <td>601652</td>
+                        <td>MYOC</td>
+                        <td>7610</td>
+                        <td>Q99972</td>
+                        <td>juvenile-onset open-angle glaucoma 1</td>
+                    </tr>
+                                        <tr>
+                        <td><a href="getDisease.php?idCode=17727">HPGD</a></td>
+                        <td>15-hydroxyprostaglandin dehydrogenase</td>
+                        <td>4q34.1</td>
+                        <td>ENSG00000164120</td>
+                        <td>601688</td>
+                        <td>HPGD</td>
+                        <td>5154</td>
+                        <td>P15428</td>
+                        <td>15-hydroxyprostaglandin dehydrogenase (NAD(+))</td>
+                    </tr>
+                                        <tr>
+                        <td><a href="getDisease.php?idCode=17727">HPGD</a></td>
+                        <td>15-hydroxyprostaglandin dehydrogenase</td>
+                        <td>4q34.1</td>
+                        <td>ENSG00000164120</td>
+                        <td>601688</td>
+                        <td>HPGD</td>
+                        <td>5154</td>
+                        <td>P15428</td>
+                        <td>SDR36C1</td>
+                    </tr>
+                                        <tr>
+                        <td><a href="getDisease.php?idCode=17727">HPGD</a></td>
+                        <td>15-hydroxyprostaglandin dehydrogenase</td>
+                        <td>4q34.1</td>
+                        <td>ENSG00000164120</td>
+                        <td>601688</td>
+                        <td>HPGD</td>
+                        <td>5154</td>
+                        <td>P15428</td>
+                        <td>short chain dehydrogenase/reductase family 36C, member 1</td>
+                    </tr>
+                                        <tr>
+                        <td><a href="getDisease.php?idCode=18733">SLC1A3</a></td>
+                        <td>solute carrier family 1 member 3</td>
+                        <td>5p13.2</td>
+                        <td>ENSG00000079215</td>
+                        <td>600111</td>
+                        <td>SLC1A3</td>
+                        <td>10941</td>
+                        <td>P43003</td>
+                        <td>GLAST</td>
+                    </tr>
+                                        <tr>
+                        <td><a href="getDisease.php?idCode=20799">FIGLA</a></td>
+                        <td>folliculogenesis specific bHLH transcription factor</td>
+                        <td>2p13.3</td>
+                        <td>ENSG00000183733</td>
+                        <td>608697</td>
+                        <td>FIGLA</td>
+                        <td>24669</td>
+                        <td>Q6QHK4</td>
+                        <td>bHLHc8</td>
+                    </tr>
+                                        <tr>
+                        <td><a href="getDisease.php?idCode=20799">FIGLA</a></td>
+                        <td>folliculogenesis specific bHLH transcription factor</td>
+                        <td>2p13.3</td>
+                        <td>ENSG00000183733</td>
+                        <td>608697</td>
+                        <td>FIGLA</td>
+                        <td>24669</td>
+                        <td>Q6QHK4</td>
+                        <td>Factor in the germline alpha</td>
+                    </tr>
+                                        <tr>
+                        <td><a href="getDisease.php?idCode=20799">FIGLA</a></td>
+                        <td>folliculogenesis specific bHLH transcription factor</td>
+                        <td>2p13.3</td>
+                        <td>ENSG00000183733</td>
+                        <td>608697</td>
+                        <td>FIGLA</td>
+                        <td>24669</td>
+                        <td>Q6QHK4</td>
+                        <td>Figalpha</td>
+                    </tr>
+                                    </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <div class="content-search">
+    <div class="container">
+    <h2 class="title">Results: Diseases</h2>
+    <p>Num Hits: 15</p>
+            <table border="0" cellspacing="2" cellpadding="4" id="dataTableDiseases" class = "rounded-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>OrphaCode</th>
+                    </tr>
+                </thead>
+                <tbody>
+                                        <tr>
+                        <td><a href="getGene.php?idCode=1998">Glaucoma-ectopia lentis-microspherophakia-stiff joints-short stature syndrome</a></td>
+                        <td>2084</td>
+                    </tr>
+                                        <tr>
+                        <td><a href="getGene.php?idCode=2112">Familial isolated hypoparathyroidism due to agenesis of parathyroid gland</a></td>
+                        <td>2239</td>
+                    </tr>
+                                        <tr>
+                        <td><a href="getGene.php?idCode=3382">Glanzmann thrombasthenia</a></td>
+                        <td>849</td>
+                    </tr>
+                                        <tr>
+                        <td><a href="getGene.php?idCode=8748">Cataract-glaucoma syndrome</a></td>
+                        <td>162</td>
+                    </tr>
+                                        <tr>
+                        <td><a href="getGene.php?idCode=11151">Neonatal diabetes-congenital hypothyroidism-congenital glaucoma-hepatic fibrosis-polycystic kidneys syndrome</a></td>
+                        <td>79118</td>
+                    </tr>
+                                        <tr>
+                        <td><a href="getGene.php?idCode=11735">Aplasia of lacrimal and salivary glands</a></td>
+                        <td>86815</td>
+                    </tr>
+                                        <tr>
+                        <td><a href="getGene.php?idCode=13993">Congenital glaucoma</a></td>
+                        <td>98976</td>
+                    </tr>
+                                        <tr>
+                        <td><a href="getGene.php?idCode=13994">Juvenile glaucoma</a></td>
+                        <td>98977</td>
+                    </tr>
+                                        <tr>
+                        <td><a href="getGene.php?idCode=18401">Isolated autosomal dominant hypomagnesemia, Glaudemans type</a></td>
+                        <td>199326</td>
+                    </tr>
+                                        <tr>
+                        <td><a href="getGene.php?idCode=19302">Glaucoma secondary to spherophakia/ectopia lentis and megalocornea</a></td>
+                        <td>238763</td>
+                    </tr>
+                                        <tr>
+                        <td><a href="getGene.php?idCode=22121">NON RARE IN EUROPE: Primary adult open-angle glaucoma</a></td>
+                        <td>353225</td>
+                    </tr>
+                                        <tr>
+                        <td><a href="getGene.php?idCode=23663">Pleomorphic salivary gland adenoma</a></td>
+                        <td>454821</td>
+                    </tr>
+                                        <tr>
+                        <td><a href="getGene.php?idCode=24231">Isolated generalized anhidrosis with normal sweat glands</a></td>
+                        <td>468666</td>
+                    </tr>
+                                        <tr>
+                        <td><a href="getGene.php?idCode=26035">Squamous cell carcinoma of salivary glands</a></td>
+                        <td>500481</td>
+                    </tr>
+                                        <tr>
+                        <td><a href="getGene.php?idCode=27494">Hypohidrosis-electrolyte imbalance-lacrimal gland dysfunction-ichthyosis-xerostomia syndrome</a></td>
+                        <td>528105</td>
+                    </tr>
+                                    </tbody>
+            </table>
+        </div>
+    </div>
+    
+
+<p class="button"><a href="index.php?new=1">New Search</a></p>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#dataTableGenes').DataTable();
+        $('#dataTableDiseases').DataTable();
+        $('#dataTableAssociations').DataTable();
+    });
+</script>
+
+
+    <footer>
+    <h4> © The RareGen GROUP 2024
+      <br> Edgar Chacón, Narine Fischer, Arnau Noguera, Aina Vaquer
+      <br> Contact us via: notarealemailaddress@gmail.com
+    </h4>
+  </footer>
+  <script src="js/index.js" defer></script>
+  </body>
+
+</html>
