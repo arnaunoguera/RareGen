@@ -1,0 +1,194 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RareGen</title>
+<link rel="icon" type="image/x-icon" href="images/DNA.png" />
+<link rel="stylesheet" href="css/styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Roboto+Flex:wght@100;200;300;400;500;600;700;800;900;1000&family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="DataTable/jquery.dataTables.min.css"/>
+<script type="text/javascript" src="DataTable/jquery-2.2.0.min.js"></script>
+<script type="text/javascript" src="DataTable/jquery.dataTables.min.js"></script>
+</head>
+<body>
+<!-- BACKGROUND -->
+<div class="background"></div>
+<!-- HEADER -->
+<header>
+  <a href="index.php">
+    <h1 class="logo">RareGen</h1>
+  </a>
+  <div class="site-management">
+    <button class="user-entrance" id="signup" onmousedown="changeBackgroundColor(this, '#666666')" 
+    onmouseup="revertBackgroundColor(this)" onmouseenter="changeBackgroundColor(this, '#BBBBBB')" 
+    onmouseleave="revertBackgroundColor(this)" onclick="javascript:window.location.href='sign_up.php';">Sign Up</button>
+    <button class="user-entrance" id="login" onmousedown="changeBackgroundColor(this, '#666666')"
+    onmouseup="revertBackgroundColor(this)" onmouseenter="changeBackgroundColor(this, '#BBBBBB')"
+    onmouseleave="revertBackgroundColor(this)" onclick="openLoginModal()">Login</button>
+  </div>
+</header>
+</body>
+</html><div class="content-resultstitle">
+    <div class="container_resultstitle">
+        <h1 class="results-title">DISEASE | Fabry disease</h1>
+    </div>
+</div>
+<div class="content-results">
+    <div class="container_results">
+        <h2 class="title_results">General information</h2>
+          
+            <p class="result_item clickable" onclick="window.open('https://www.orpha.net/es/disease/detail/324', '_blank');">
+                <b>OrphaCode:</b> 324            </p> 
+                  
+            <p class="result_item"><b>Disease alias:</b> Alpha-galactosidase A deficiency, Anderson-Fabry disease, Angiokeratoma corporis diffusum, Diffuse angiokeratoma, FD</p> 
+          
+        
+    </div>
+    <div class="container_results">
+        <h2 class="title_results">Prevalence</h2>
+         
+            <table class="rounded-table">
+                <tbody> 
+                    <tr class="row">
+                        <td>Source</td>
+                        <td>Prevalence Type</td>
+                        <td>Prevalence</td>
+                        <td>Geographic</td>
+                        <td>ValMoy</td>
+                        <td>Validation Status</td>
+                    </tr>
+                                            <tr class="row">
+                            <td>ORPHANET</td>
+                            <td>Prevalence at birth</td>
+                            <td>1-9 / 1 000 000</td>
+                            <td>Worldwide</td>
+                            <td>6.66</td>
+                            <td>Validated</td>
+                        </tr>
+                                            <tr class="row">
+                            <td>35024668[PMID]</td>
+                            <td>Prevalence at birth</td>
+                            <td>1-9 / 1 000 000</td>
+                            <td>Australia</td>
+                            <td>6.96</td>
+                            <td>Validated</td>
+                        </tr>
+                                            <tr class="row">
+                            <td>10480370[PMID]</td>
+                            <td>Prevalence at birth</td>
+                            <td>1-9 / 1 000 000</td>
+                            <td>Netherlands</td>
+                            <td>0.21</td>
+                            <td>Validated</td>
+                        </tr>
+                                            <tr class="row">
+                            <td>14685153[PMID]</td>
+                            <td>Prevalence at birth</td>
+                            <td>1-9 / 1 000 000</td>
+                            <td>Portugal</td>
+                            <td>0.12</td>
+                            <td>Validated</td>
+                        </tr>
+                                            <tr class="row">
+                            <td>20490927[PMID]</td>
+                            <td>Prevalence at birth</td>
+                            <td>1-9 / 1 000 000</td>
+                            <td>Czech Republic</td>
+                            <td>0.52</td>
+                            <td>Validated</td>
+                        </tr>
+                                            <tr class="row">
+                            <td>15275696[PMID]</td>
+                            <td>Prevalence at birth</td>
+                            <td><1 / 1 000 000</td>
+                            <td>Turkey</td>
+                            <td>0.015</td>
+                            <td>Validated</td>
+                        </tr>
+                                            <tr class="row">
+                            <td>11732485[PMID]</td>
+                            <td>Point prevalence</td>
+                            <td>1-9 / 1 000 000</td>
+                            <td>United Kingdom</td>
+                            <td>0.15</td>
+                            <td>Validated</td>
+                        </tr>
+                                            <tr class="row">
+                            <td>22790789[PMID]</td>
+                            <td>Prevalence at birth</td>
+                            <td>1-9 / 1 000 000</td>
+                            <td>Japan</td>
+                            <td>0.25</td>
+                            <td>Validated</td>
+                        </tr>
+                                            <tr class="row">
+                            <td>ORPHANET</td>
+                            <td>Point prevalence</td>
+                            <td>1-5 / 10 000</td>
+                            <td>Europe</td>
+                            <td>0.0</td>
+                            <td>Not yet validated</td>
+                        </tr>
+                                            <tr class="row">
+                            <td>25274184[PMID]</td>
+                            <td>Prevalence at birth</td>
+                            <td>1-9 / 100 000</td>
+                            <td>Sweden</td>
+                            <td>1.11</td>
+                            <td>Validated</td>
+                        </tr>
+                                            <tr class="row">
+                            <td>34103049[PMID]</td>
+                            <td>Point prevalence</td>
+                            <td>1-9 / 1 000 000</td>
+                            <td>China</td>
+                            <td>0.118</td>
+                            <td>Validated</td>
+                        </tr>
+                                    </tbody>
+            </table>
+            </div>
+    
+
+    
+    <div class="container_coments">
+        <h2 class="title_coments">Comments</h2>
+        <form class="comment_item" action="save_comment.php" method="post">
+            <input type="hidden" name="idDisease" value="YOUR_PAGE_URL">
+            <textarea name="Comment" placeholder="Write your comment referring to Fabry disease here" required></textarea>
+            <button type="submit">Save Comment</button>
+        </form>
+        <p style="text-align: center;">__________________________________</p>
+    </div>
+</div>
+
+<div class="container_end_results">
+</div>
+
+  <footer>
+  <h4> © The RareGen GROUP 2024
+    <br> Edgar Chacón, Narine Fischer, Arnau Noguera, Aina Vaquer
+    <br> Contact us via: notarealemailaddress@gmail.com
+  </h4>
+</footer>
+<script src="js/index.js" defer></script>
+</body>
+<div id="loginModal" class="modal">
+<div class="modal-content">
+  <span class="close" onclick="closeLoginModal()">&times;</span>
+  <h2>Login</h2>
+  <form id="loginForm">
+    <label for="username">Username:</label>
+    <input type="text" id="username" placeholder="Introduce your username" name="username">
+    <label for="password">Password:</label>
+    <div class="password-container">
+      <input type="password" id="password1" placeholder="Introduce your password" name="password1" autocomplete="new-password">
+      <button type="button" class="show-password-button" onclick="togglePasswordVisibility("password1")">Show</button>
+    </div>
+    <button style="margin-left: 25px" type="submit" class="submit-button">Login</button>
+  </form>
+</div>
+</div>
+</html>
