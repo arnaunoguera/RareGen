@@ -47,8 +47,9 @@ h4 {
 	font-size: 1em;
 }
 p {
-	font-size: 1em;
+	font-size: 1.7em;
 }
+
 * {
 	padding: 0;
 	margin: 0;
@@ -63,6 +64,11 @@ body {
 	margin: 0;
 	padding: 0;
 }
+
+.clickable {
+    cursor: pointer;
+}
+
 .background {
 	position: fixed;
 	top: 0;
@@ -560,4 +566,132 @@ input {
 }
 /* END: search.php */
 
+/* START: Results */
+.content-results {
+	flex: 1;
+	top: 8em;
+	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding-top: 1em;
+	margin-bottom: 1em;
+}
 
+.container_results {
+	background-color: var(--fade8-w-color);
+	color: var(--text-b-color);
+	width: 80%;
+	padding: 2em 3em;
+	border-radius: var(--border-radius2);
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+.container_end_results {
+	margin-bottom: 5em;
+}
+
+.title_results {
+	font-size: 3em;
+	font-weight: bold;
+	text-shadow: 2px 2px 8px var(--shadow-title2);
+	margin-top: -60px;
+}
+
+.results-title {
+	font-size: 3em;
+	font-weight: bold;
+	text-shadow: 2px 2px 8px var(--shadow-title2);
+}
+
+.content-resultstitle {
+	flex: 1;
+	top: 8em;
+	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding-top: 0.5em;
+	margin-bottom: 0.5em;
+	text-align: center;
+}
+
+.container_resultstitle {
+	background-color: var(--fade5-w-color);
+	color: var(--text-b-color);
+	width: 80%;
+	padding: 2em 3em;
+	border-radius: var(--border-radius2);
+	margin-top: 8vw;
+	margin-bottom: 1vw;
+}
+
+.result_item {
+
+}
+/* END: Results */
+
+/* START: Tables */
+.rounded-table {
+	width: 100%;
+	border-collapse: separate;
+	border-spacing: 0;
+	border: 0px solid var(--fade8-w-color);
+	border-radius: 5px;
+}
+.rounded-table th,
+.rounded-table td {
+	padding: 10px;
+	border: 3px solid rgba(165, 165, 165, 0.5);
+	border-radius: 7px;
+	text-align: left;
+}
+.rounded-table th {
+	background-color: rgba(165, 165, 165, 0.5);
+	font-weight: bold;
+}
+.rounded-table tr {
+	background-color: rgba(165, 165, 165, 0.5);
+}
+/* END: Tables */
+
+
+/* START: Comments */
+
+.container_coments {
+	background-color: var(--fade8-w-color);
+	color: var(--text-b-color);
+	width: 80%;
+	padding: 2em 3em;
+	border-radius: var(--border-radius2);
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+.title_coments {
+	font-size: 3em;
+	font-weight: bold;
+	text-shadow: 2px 2px 8px var(--shadow-title2);
+	margin-top: -60px;
+}
+
+.comment_item {
+    width: calc(100%);
+    padding: 20px;
+    margin: 0 auto;
+}
+
+.comment_item textarea {
+    width: calc(90%);
+    margin-bottom: 10px;
+	margin: 0 auto;
+}
+
+.comment_item button {
+    width: 20%;
+	margin: 0 auto;
+}
+
+/* END: Comments */

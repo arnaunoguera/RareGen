@@ -193,7 +193,7 @@ if ($geneResults) {
                 <tbody>
                     <?php while ($rsG = mysqli_fetch_assoc($rsGene)) { ?>
                     <tr>
-                        <td><a href="getGene.php?idCode=<?= $rsG['idGene'] ?>"><?= $rsG['Symbol'] ?></a></td>
+                        <td><a href="getGene.php?idGene=<?= $rsG['idGene'] ?>"><?= $rsG['Symbol'] ?></a></td>
                         <td><?= $rsG['Name'] ?></td>
                         <td><?= $rsG['Locus'] ?></td>
                         <td><?= $rsG['Ensembl_id'] ?></td>
@@ -229,7 +229,7 @@ if ($diseaseResults) {
                 <tbody>
                     <?php while ($rsD = mysqli_fetch_assoc($rsDis)) { ?>
                     <tr>
-                        <td><a href="getDisease.php?idCode=<?= $rsD['idDiseases'] ?>"><?= $rsD['Name'] ?></a></td>
+                        <td><a href="getDisease.php?idDisease=<?= $rsD['idDiseases'] ?>"><?= $rsD['Name'] ?></a></td>
                         <td><?= $rsD['Orphacode'] ?></td>
                     </tr>
                     <?php } ?>

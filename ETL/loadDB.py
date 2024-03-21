@@ -24,26 +24,16 @@ connection.cursor().execute("SET FOREIGN_KEY_CHECKS=0")
 
 ## Clean Tables !!
 for tab in (
-    'Author', 
     'Country', 
     'Country_has_Patient_Association', 
     'Disease',
     'Disease_alias', 
-    'Disease_has_Mutation', 
-    'Disease_has_Paper',
     'Disease_has_Patient_Association', 
     'Gene', 
     'Gene_alias', 
-    'Journal', 
-    'Login', 
-    'Mutation', 
-    'Mutation_type', 
-    'Mutation_has_Paper', 
-    'Paper', 
-    'Paper_has_Author', 
+    'Gene_has_Disease',
     'Patient_Association', 
     'Prevalence',
-    'Publisher',
     'Symptom'
     ):
     try:
@@ -54,24 +44,14 @@ for tab in (
 
 print('Success')
 
-## MUTATION TYPE
-sthEntryMutType = "INSERT INTO Mutation_type VALUES (%s,%s)"
-with connection.cursor() as c:
-    idMutType = 1
-    for mutation in ('Fake', 'Missense variant', 'Frameshift variant', 'Inframe insertion', 'Inframe deletion', 'Splice variant', 'Stop lost', 'Stop gained'):
-        c.execute(sthEntryMutType, (idMutType, mutation))
-        idMutType += 1
-
 ## DISEASE - GENE
 sthEntryAlias = "INSERT INTO Gene_alias VALUES (%s,%s)"
 sthEntryGene = "INSERT INTO Gene VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
-sthEntryMutation = "INSERT INTO Mutation VALUES (%s,%s,%s,%s)"
-sthEntryDisease_has_mutation = "INSERT INTO Disease_has_Mutation VALUES (%s,%s)"
+sthEntryMutation = "INSERT INTO Gene_has_Disease VALUES (%s,%s,0,'','','')" #0 to just represent gene-disease relationship
 sthEntryDisease = "INSERT INTO Disease VALUES (%s,%s, %s, '', '')" #only disease ID, name and Orphacode
 
 GENES = []
 DISEASES = []
-mutationid = 1
 with open("../data/disease_gene.xml") as f:
     tree = ET.parse('../data/disease_gene.xml')
     parser = ET.XMLParser(encoding='ISO-8859-1')
@@ -80,6 +60,7 @@ with open("../data/disease_gene.xml") as f:
         if child.tag == 'DisorderList':
             for disorder in child:
                 idDisease = disorder.attrib['id']
+                GENES_DISEASE = []
                 for diseaseInfo in disorder:
                     if diseaseInfo.tag == "OrphaCode":
                         OrphaCode = diseaseInfo.text
@@ -93,12 +74,12 @@ with open("../data/disease_gene.xml") as f:
                             for association in associationlist:
                                 if association.tag == "Gene":
                                     idGene = association.attrib['id']
-                                    #create fake mutation related to the disease (to relate gene to disease)
-                                    mutid = 'rsf' + str(mutationid).zfill(10)
-                                    mutationid += 1
-                                    with connection.cursor() as c:
-                                        c.execute(sthEntryMutation, (mutid, "Fake mutation for this dataset", 0, idGene))
-                                        c.execute(sthEntryDisease_has_mutation, (idDisease, mutid))
+                                    if idGene not in GENES_DISEASE:
+                                        GENES_DISEASE.append(idGene)
+                                        #create fake mutation related to the disease (to relate gene to disease)
+                                        #print(idGene, idDisease)
+                                        with connection.cursor() as c:
+                                            c.execute(sthEntryMutation, (idGene, idDisease))
                                     if idGene not in GENES:
                                         GeneLocus = ""
                                         GeneName = ""
@@ -288,6 +269,60 @@ with open("../data/phenotype.xml") as f:
                                             c.execute(sthEntrySymptom, (HPOTerm, HPOFrequency, idDisease)) 
                                         #print(idDisease, OrphaCode, HPOTerm, HPOFrequency, sep = '\t')
 print('Successfully read symptoms')
+
+## ASSOCIATION
+sthEntryAssoc = "INSERT INTO Patient_Association VALUES (%s,%s,%s,%s,%s,%s)"
+
+# Open the CSV file and read its contents
+with open('../data/associations.csv', 'r', newline='', encoding='utf-8') as file:
+    # Create a CSV reader with ; as the delimiter
+    csv_reader = csv.reader(file, delimiter='\t')
+    # Skip the header row
+    next(csv_reader)
+    # Iterate through the rows in the TSV file
+    with connection.cursor() as c:
+        for row in csv_reader:
+            Id,Association,Telephone_number,Email,Description,Web = row
+            if not Telephone_number:
+                Telephone_number = None
+            #print(Id,Association,Telephone_number,Email,Description,Web,sep='\t')
+            c.execute(sthEntryAssoc, (Id, Association, Telephone_number, Email, Description, Web)) 
+print('Successfully read associations file')
+
+
+## DISEASE - PATIENT ASSOCIATION
+sthEntryDisAssoc = "INSERT INTO Disease_has_Patient_Association VALUES (%s,%s)"
+
+# Open the CSV file and read its contents
+with open('../data/disease_patient.csv', 'r', newline='', encoding='utf-8') as file:
+    # Create a CSV reader with ; as the delimiter
+    csv_reader = csv.reader(file, delimiter=';')
+    # Skip the header row
+    next(csv_reader)
+    # Iterate through the rows in the TSV file
+    with connection.cursor() as c:
+        for row in csv_reader:
+            DiseaseId,AssociationId = row
+            #print(DiseaseId,AssociationId,sep='\t')
+            c.execute(sthEntryDisAssoc, (DiseaseId,AssociationId)) 
+print('Successfully read association - disease file')
+
+## PATIENT ASSOCIATION - COUNTRY
+sthEntryAssocCountry = "INSERT INTO Country_has_Patient_Association VALUES (%s,%s)"
+
+# Open the CSV file and read its contents
+with open('../data/patient_country.csv', 'r', newline='', encoding='utf-8') as file:
+    # Create a CSV reader with ; as the delimiter
+    csv_reader = csv.reader(file, delimiter=';')
+    # Skip the header row
+    next(csv_reader)
+    # Iterate through the rows in the TSV file
+    with connection.cursor() as c:
+        for row in csv_reader:
+            AssociationId,CountryID = row
+            #print(CountryID,AssociationId,sep='\t')
+            c.execute(sthEntryAssocCountry, (CountryID,AssociationId)) 
+print('Successfully read association - country file')
 
 connection.close()
 print('Success')
