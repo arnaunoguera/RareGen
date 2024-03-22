@@ -19,7 +19,7 @@ include_once "$incDir/bdconn.inc.php";
 // Load predefined arrays
 // Fulltext search fields
 $geneFields = ['g.Name', 'g.Locus', 'g.Ensembl_id', 'g.OMIM_id', 'g.GenAtlas_id', 'g.HGNC_id', 'g.Symbol', 'g.SwissProt_id', 'ga.Alias_name'];
-$diseaseFields = ['d.Name', 'd.Orphacode'];
+$diseaseFields = ['d.Name', 'd.Orphacode', 'da.Alias_name'];
 $associationFields = ['pa.Name', 'pa.Description'];
 
 // Start session to store queries

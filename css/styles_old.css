@@ -1,4 +1,3 @@
-/* --- START: GENERAL ELEMENTS --- */
 :root {
 	--element-color: #00000066;
 	--text-w-color: #ffffff;
@@ -28,26 +27,17 @@
 	--border-radius2: 0.5em;
 	--border-radius4: 1em;
 	--shadow: rgba(0, 0, 0, 0.5);
-	--shadow-title: rgba(0, 0, 0, 0.85);
-	--shadow-title2: rgba(0, 0, 0, 0.98);
+	--shadow-title: rgba(0, 0, 0, 0.75);
+	--shadow-title2: rgba(0, 0, 0, 0.95);
 	--text-shadow: rgba(0, 0, 0, 0.9);
 	--search-bg-color: var(--fade2-b-color);
-	--comment-box: var(--fade2-b-color);
-	--comment-border: var(--fade1-w-color);
-	--comment-border-focus: rgba(255, 255, 255, 0.342);
-	--bubble: rgba(165, 165, 165, 0.5);
-	--bubble-hover: rgba(129, 129, 129, 0.5);
-	--table-head: rgba(58, 58, 58, 0.5);
-	--table-head-border: rgba(214, 214, 214, 0.9);
-	--table-row: rgba(165, 165, 165, 0.5);
-	--table-row-border: rgba(247, 247, 247, 0.4);
 }
 h1 {
 	font-size: 3em;
 	color: white;
 }
 h2 {
-	font-size: 2.5em;
+	font-size: 3em;
 	color: white;
 }
 h3 {
@@ -66,10 +56,6 @@ p {
 	box-sizing: border-box;
 	font-family: " Roboto ", sans-serif;
 }
-
-.clickable {
-    cursor: pointer;
-}
 body {
 	min-width: 750px;
 	color: white;
@@ -79,33 +65,23 @@ body {
 	padding: 0;
 }
 
+.clickable {
+    cursor: pointer;
+}
+
 .background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url("../images/bg.avif");
-    background-size: cover;
-    background-position: center;
-    z-index: -1;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-image: url("../images/bg.avif");
+	background-size: cover;
+	background-position: center;
+	z-index: -1;
 }
 
-.background::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: -1;
-}
-
-/* --- END: GENERAL ELEMENTS --- */
-
-/* --- START: Navigation --- */
-
+/* Navigation */
 header {
 	position: fixed;
 	top: 0;
@@ -161,10 +137,7 @@ a {
 	cursor: pointer;
 }
 
-/* --- END: Navigation --- */
-
-/* --- START: Footer --- */
-
+/* Footer */
 footer {
 	background-color: var(--fade1-w-color);
 	backdrop-filter: blur(var(--blur));
@@ -177,24 +150,18 @@ footer {
 	min-height: 4em;
 }
 
+/* Center the content inside the footer */
 footer h4 {
-	color: var(--text-w-color);
-	margin-bottom: 0.5em;
+	color: var(--text-w-color); /* Set the text color */
+	margin-bottom: 0.5em; /* Adjust the spacing */
 }
 
+/* Adjusted the text color for better visibility */
 footer h4:last-child {
 	color: var(--text-w-color);
-	text-shadow: 2px 2px 8px var(--shadow-title2)
 }
 
-.container_end {
-	margin-bottom: 5em;
-}/* Container added before the footer to avoid getting the body under the footer */
-
-/* --- END: Footer --- */
-
-/* --- START: BODY --- */
-
+/* BODY */
 .content {
 	display: flex;
 	justify-content: center; /* Center horizontally */
@@ -358,7 +325,6 @@ input {
 .info h3 {
 	font-size: 1em;
 }
-
 .rounded-table {
 	width: 100%;
 	border-collapse: separate;
@@ -366,7 +332,6 @@ input {
 	border: 1px solid #ffffff00;
 	border-radius: 10px;
 }
-
 .rounded-table th,
 .rounded-table td {
 	padding: 10px;
@@ -375,17 +340,15 @@ input {
 	text-align: left;
 	color:black;
 }
-
 .rounded-table th {
 	background-color: #424d5a;
 	font-weight: bold;
 	color:white;
 	text-align: center;
 }
-
 .rounded-table tr.row {
 	background-color: #a5a5a5a5;
-}
+  }
 
 .custom-search-button {
     font-size: 20px; 
@@ -534,7 +497,7 @@ input {
 	margin-right:60px;
 }
 
-/* --- START: Search --- */
+/* START: search.php */
 .content-search_searchresults {
 	flex: 1;
 	top: 8em;
@@ -545,7 +508,6 @@ input {
 	justify-content: center;
 	padding-top: 1em;
 	margin-bottom: 1em;
-	margin-top: 1em;
 }
 
 .container_searchresults {
@@ -554,7 +516,7 @@ input {
 	width: 80%;
 	padding: 2em 3em;
 	border-radius: var(--border-radius2);
-	margin-top: 1.1em;
+	margin-top: 1em;
 	margin-bottom: 1em;
 }
 .container_end_searchresults {
@@ -602,11 +564,9 @@ input {
 	margin-top: 1vw;
 	margin-bottom: 0.5vw;
 }
+/* END: search.php */
 
-/* --- END: Search --- */
-
-/* --- START: Results --- */
-
+/* START: Results */
 .content-results {
 	flex: 1;
 	top: 8em;
@@ -617,7 +577,6 @@ input {
 	justify-content: center;
 	padding-top: 1em;
 	margin-bottom: 1em;
-	margin-top: 1em;
 }
 
 .container_results {
@@ -627,17 +586,17 @@ input {
 	padding: 2em 3em;
 	border-radius: var(--border-radius2);
 	margin-top: 1em;
-	margin-bottom: 2em;
+	margin-bottom: 1em;
 }
-
+.container_end_results {
+	margin-bottom: 5em;
+}
 
 .title_results {
 	font-size: 3em;
 	font-weight: bold;
-	text-shadow: 3px 3px 8px var(--shadow-title2);
-	margin-top: -62px;
-	margin-left: -15px;
-	margin-bottom: 15px;
+	text-shadow: 2px 2px 8px var(--shadow-title2);
+	margin-top: -60px;
 }
 
 .results-title {
@@ -670,53 +629,36 @@ input {
 }
 
 .result_item {
-	margin: 0 auto;
+
 }
+/* END: Results */
 
-.bubble {
-    display: inline-block;
-    padding: 5px 10px;
-    border-radius: 7px;
-    background-color: var(--bubble);
-    color: var(--text-b-color);
-    margin-right: 5px;
-	margin-bottom: 5px;
-}
-.bubble:hover {
-    background-color: var(--bubble-hover);
-} 
-
-/* --- END: Results --- */
-
-/* --- START: Tables --- */
-
+/* START: Tables */
 .rounded-table {
 	width: 100%;
 	border-collapse: separate;
 	border-spacing: 0;
-	border: 2px solid transparent;
+	border: 0px solid var(--fade8-w-color);
 	border-radius: 5px;
 }
 .rounded-table th,
 .rounded-table td {
 	padding: 10px;
-	border: 2px solid var(--table-row-border);
+	border: 3px solid rgba(165, 165, 165, 0.5);
 	border-radius: 7px;
 	text-align: left;
 }
 .rounded-table th {
-	background-color: var(--table-head);
-	border: 2px solid var(--table-head-border);
+	background-color: rgba(165, 165, 165, 0.5);
 	font-weight: bold;
 }
 .rounded-table tr {
-	background-color: var(--table-row);
+	background-color: rgba(165, 165, 165, 0.5);
 }
+/* END: Tables */
 
-/* --- END: Tables --- */
 
-
-/* --- START: Comments --- */
+/* START: Comments */
 
 .container_coments {
 	background-color: var(--fade8-w-color);
@@ -728,44 +670,28 @@ input {
 	margin-bottom: 1em;
 }
 
+.title_coments {
+	font-size: 3em;
+	font-weight: bold;
+	text-shadow: 2px 2px 8px var(--shadow-title2);
+	margin-top: -60px;
+}
+
 .comment_item {
     width: calc(100%);
-    padding: 25px;
+    padding: 20px;
     margin: 0 auto;
 }
 
 .comment_item textarea {
-    width: calc(100%);
-	height: 10em;
+    width: calc(90%);
+    margin-bottom: 10px;
 	margin: 0 auto;
-	background-color: var(--fade7-w-color);
-	border-radius: 7px;
-	box-shadow: 2px 2px 8px var(--shadow);
-	border: 2px solid var(--comment-border) !important; 
-	padding: 0.5em;
-	font-size: 1.2em;
-	resize: none;
-	overflow: auto;
 }
 
-.comment_item textarea:focus {
-	border: 2px solid var(--comment-border-focus) !important; 
-}/* Change border color on focus */
-
-.comment_item_button {
+.comment_item button {
     width: 20%;
-	background-color: var(--fade8-w-color);
-	border: none;
-	color: var(--text-b-color);
-	border-radius: var(--border-radius);
-	font-size: 1.5em;
-	font-weight: bold;
-	padding: 0.5em 1em;
-	margin-left: 40%;
-	margin-right: 40%;
-	margin-top: 1%;
-	box-shadow: 2px 2px 8px var(--shadow);
-	cursor: pointer;
+	margin: 0 auto;
 }
 
 /* END: Comments */

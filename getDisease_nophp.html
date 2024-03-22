@@ -40,26 +40,28 @@
         <h2 class="title_results">General information</h2>
           
             <p class="result_item clickable" onclick="window.open('https://www.orpha.net/es/disease/detail/324', '_blank');">
-                <b>OrphaCode:</b> 324            </p> 
+                <b>OrphaCode:</b> 324</p> 
                   
-            <p class="result_item"><b>Disease alias:</b> Alpha-galactosidase A deficiency, Anderson-Fabry disease, Angiokeratoma corporis diffusum, Diffuse angiokeratoma, FD</p> 
+            <p class="result_item_alias"><b>Disease alias:</b> Alpha-galactosidase A deficiency, Anderson-Fabry disease, Angiokeratoma corporis diffusum, Diffuse angiokeratoma, FD</p> 
           
         
     </div>
     <div class="container_results">
         <h2 class="title_results">Prevalence</h2>
-         
             <table class="rounded-table">
-                <tbody> 
-                    <tr class="row">
-                        <td>Source</td>
-                        <td>Prevalence Type</td>
-                        <td>Prevalence</td>
-                        <td>Geographic</td>
-                        <td>ValMoy</td>
-                        <td>Validation Status</td>
-                    </tr>
-                                            <tr class="row">
+              <thead>
+                <tr>
+                  <th>Source</th>
+                  <th>Prevalence Type</th>
+                  <th>Prevalence</th>
+                  <th>Geographic</th>
+                  <th>ValMoy</th>
+                  <th>Validation Status</th>
+              </tr>
+              </thead> 
+              <tbody> 
+                    
+                        <tr class="row">
                             <td>ORPHANET</td>
                             <td>Prevalence at birth</td>
                             <td>1-9 / 1 000 000</td>
@@ -154,17 +156,22 @@
 
     
     <div class="container_coments">
-        <h2 class="title_coments">Comments</h2>
+        <h2 class="title_results">Comments</h2>
         <form class="comment_item" action="save_comment.php" method="post">
             <input type="hidden" name="idDisease" value="YOUR_PAGE_URL">
             <textarea name="Comment" placeholder="Write your comment referring to Fabry disease here" required></textarea>
-            <button type="submit">Save Comment</button>
+            <button class="comment_item_button" type="submit" 
+            onmousedown="changeBackgroundColor(this, '#666666')" 
+            onmouseup="revertBackgroundColor(this)" 
+            onmouseenter="changeBackgroundColor(this, '#BBBBBB')" 
+            onmouseleave="revertBackgroundColor(this)">Save Comment</button>
+            <p style="text-align: center; color: rgba(100, 100, 100, 0.5);">__________________________________</p>
         </form>
-        <p style="text-align: center;">__________________________________</p>
+        
     </div>
 </div>
 
-<div class="container_end_results">
+<div class="container_end">
 </div>
 
   <footer>

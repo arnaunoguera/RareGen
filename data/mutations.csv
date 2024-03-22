@@ -1,0 +1,23 @@
+"Gene_id";"Disease_id";"idMutation";"Mutation_type";"Mutation_name";"gene_position";"protein_position";"effect"
+16135;94;1;"Missense Variant";;"c.242G>C";"p.Trp81Ser";
+16135;94;2;"Missense Variant";"rs113173389";"c.281G>T/A";"p.Cys94Tyr";"loss of enzyme activity"
+16135;94;3;"Missense Variant";"rs869312134";"c.59C>A";"p.Ala20Asp";"loss of enzyme activity"
+16135;94;4;"Missense Variant";"rs104894847";"c.58G>C ";"p.Ala20Pro";"loss of enzyme activity"
+16135;94;5;"Missense Variant";"rs869312142";"c.337T>A";"p.Pro113Ile";"decreased enzyme activity"
+16135;94;6;"Missense Variant";"rs869312138";"c.107T>G";"p.Leu36Trp";"loss of enzyme activity"
+16135;94;7;"Missense Variant";"rs28935488";"c.806T>C";"p.Val269Ala";"loss of enzyme activity"
+16135;94;8;"Missense Variant";"rs869312156";"c.943G>A";"p.Asp315Asn";"decreased enzyme activity"
+16135;94;9;"Missense Variant";"rs869312160";"c.980A>T";"p.Gln327Leu";"loss of enzyme activity"
+16135;94;10;"Missense Variant";"rs104894832";"c.982G>C";"p.Gly328Arg";"loss of enzyme activity"
+16240;12381;11;"Missense Variant";"rs121965021";"c.1598C>T";"p.Pro533Leu";"reduces catalytic activity and protein stability"
+16240;12381;12;"Missense Variant";"rs758452450";"c.223G>A";"p.Ala75Thr";"Pathogenic"
+16240;12381;13;"Missense Variant";"rs558683362";"c.399G>C";"p.Met133Ile";
+16240;12381;14;"Missense Variant";"rs368454909";"c.1045G>T";"p.Asp349Tyr";
+16240;12381;15;"Missense Variant";"rs121965024";"c.1096A>C";"p.Thr366Pro";
+16240;12381;16;"Missense Variant";"rs1430681871";"c.623G>A";"p.Gly208Asp";
+16240;12382;17;"Missense Variant";"rs931627770";"c.1269C>A";"p.Ser423Arg";"significant reduction of activity and protein levels"
+16240;12382;18;"Missense Variant";"rs121965029";"c.266G>A";"p.Arg89Gln";
+16240;12382;19;"Missense Variant";"rs794726878";"c.53T>C";"p.Leu18Pro";
+16240;12382;20;"Missense Variant";"rs121965026";"c.1475G>C";"p.Arg492Pro";
+16240;12382;21;"Missense Variant";"rs746766617";"c.1044C>G";"p.Asn348Lys";
+16240;12382;22;"Missense Variant";"rs780165694";"c.227A>G";"p.Tyr76Cys";"Conflicting classifications of pathogenicity: Likely pathogenic, Uncertain significance"

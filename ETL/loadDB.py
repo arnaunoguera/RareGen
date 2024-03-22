@@ -47,7 +47,7 @@ print('Success')
 ## DISEASE - GENE
 sthEntryAlias = "INSERT INTO Gene_alias VALUES (%s,%s)"
 sthEntryGene = "INSERT INTO Gene VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
-sthEntryMutation = "INSERT INTO Gene_has_Disease VALUES (%s,%s,0,'','','')" #0 to just represent gene-disease relationship
+sthEntryMutation = "INSERT INTO Gene_has_Disease VALUES (%s,%s,0,'','','','','')" #0 to just represent gene-disease relationship
 sthEntryDisease = "INSERT INTO Disease VALUES (%s,%s, %s, '', '')" #only disease ID, name and Orphacode
 
 GENES = []
@@ -323,6 +323,21 @@ with open('../data/patient_country.csv', 'r', newline='', encoding='utf-8') as f
             #print(CountryID,AssociationId,sep='\t')
             c.execute(sthEntryAssocCountry, (CountryID,AssociationId)) 
 print('Successfully read association - country file')
+
+## MUTATION
+sthEntryMutation = "INSERT INTO Gene_has_Disease VALUES (%s,%s,%s,%s,%s,%s,%s,%s)"
+with open('../data/mutations.csv', 'r', newline='', encoding='utf-8') as file:
+    # Create a CSV reader with ; as the delimiter
+    csv_reader = csv.reader(file, delimiter=';')
+    # Skip the header row
+    next(csv_reader)
+    # Iterate through the rows in the TSV file
+    with connection.cursor() as c:
+        for row in csv_reader:
+            Gene_id,Disease_id,idMutation,Mutation_type,Mutation_name,gene_position,protein_position,effect = row
+            #print(Gene_id,Disease_id,idMutation,Mutation_type,Mutation_name,gene_position,protein_position,effect, sep = ',')
+            c.execute(sthEntryMutation, (Gene_id,Disease_id,idMutation,Mutation_type,Mutation_name,gene_position,protein_position,effect)) 
+print('Successfully read mutations file')
 
 connection.close()
 print('Success')

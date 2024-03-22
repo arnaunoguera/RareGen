@@ -14,6 +14,7 @@ function revertBackgroundColor(button) {
 	button.style.backgroundColor = "";
 }
 
+
 function goToGene() {
 	var searchInputValue = document.getElementById("searchInput").value;
 	console.log("GENE + Search input value:", searchInputValue);
@@ -136,9 +137,30 @@ function closeLoginModal() {
 }
 
 // Prevent the form submission for now
-document.getElementById("loginForm").addEventListener("submit", function(event) {
-    event.preventDefault();
-    // Here you can add your code to handle the form submission, like AJAX request to validate the credentials
+document.addEventListener('DOMContentLoaded', function() {
+    var diseaseAliases = document.querySelector('.result_item_alias');
+    var aliasesText = diseaseAliases.textContent.split(': ')[1].split(', '); // Extract text and split by comma
+
+    var bubbleContainer = document.createElement('p');
+    bubbleContainer.classList.add('result_item_alias'); // Add the same class as the original <p> element
+
+    var label = document.createElement('b');
+    label.textContent = 'Disease alias:';
+    bubbleContainer.appendChild(label); // Append the label to the container
+    bubbleContainer.appendChild(document.createElement('br')); // Add line break
+
+    aliasesText.forEach(function(alias, index) {
+        var bubble = document.createElement('span');
+        bubble.textContent = alias.trim(); // Trim any leading/trailing spaces
+        bubble.classList.add('bubble');
+        bubbleContainer.appendChild(bubble); // Append bubble to container
+        if (index !== aliasesText.length - 1) {
+            bubbleContainer.appendChild(document.createTextNode('')); // Add space separator
+        }
+    });
+
+    diseaseAliases.parentNode.replaceChild(bubbleContainer, diseaseAliases); // Replace original with bubbles
 });
+
 
 

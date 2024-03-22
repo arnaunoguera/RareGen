@@ -38,6 +38,9 @@ function headerDBW() {
 
 function footerDBW() {
   return '
+  <div class="container_end">
+  </div>
+
   <footer>
   <h4> © The RareGen GROUP 2024
     <br> Edgar Chacón, Narine Fischer, Arnau Noguera, Aina Vaquer

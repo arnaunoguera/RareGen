@@ -82,14 +82,15 @@ if ($_REQUEST['search']) {
 
 // SELECT columns FROM tables WHERE Conditions_from_relationships AND Conditions_from_query_Form
 if ($geneSearch){
-    $sqlGene = "SELECT distinct g.idGene,g.Name,g.Locus,g.Ensembl_id,g.OMIM_id,g.GenAtlas_id,g.HGNC_id,g.Symbol,g.SwissProt_id,ga.Alias_name,ga.Gene_idGene FROM 
-    Gene g, Gene_alias ga WHERE
-    g.idGene=ga.Gene_idGene AND
+    $sqlGene = "SELECT distinct g.idGene,g.Name,g.Locus,g.Ensembl_id,g.OMIM_id,g.GenAtlas_id,g.HGNC_id,g.Symbol,g.SwissProt_id FROM 
+    Gene g
+    LEFT JOIN Gene_alias ga ON g.idGene=ga.Gene_idGene WHERE
     " . join(" AND ", $ANDcondsGene);
 }
 if ($diseaseSearch){
     $sqlDis = "SELECT distinct d.Name,d.Orphacode,d.idDiseases FROM 
-    Disease d WHERE
+    Disease d
+    LEFT JOIN Disease_alias da ON d.Orphacode = da.Disease_Orphacode WHERE
     " . join(" AND ", $ANDcondsDis);
 }
 if ($assocSearch){
@@ -99,7 +100,6 @@ if ($assocSearch){
     cpa.Country_idCountry=c.idCountry AND
     " . join(" AND ", $ANDcondsAssoc);
 }
-
 
 //    Ordering will be done by the DataTable element using JQuery, if not available can also be done from the SQL 
 //    switch ($order) {
@@ -184,10 +184,6 @@ if ($geneResults) {
                         <th>Locus</th>
                         <th>Ensembl ID</th>
                         <th>OMIM ID</th>
-                        <th>GenAtlas ID</th>
-                        <th>HGNC ID</th>
-                        <th>SwissProt ID</th>
-                        <th>Alias</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -198,10 +194,6 @@ if ($geneResults) {
                         <td><?= $rsG['Locus'] ?></td>
                         <td><?= $rsG['Ensembl_id'] ?></td>
                         <td><?= $rsG['OMIM_id'] ?></td>
-                        <td><?= $rsG['GenAtlas_id'] ?></td>
-                        <td><?= $rsG['HGNC_id'] ?></td>
-                        <td><?= $rsG['SwissProt_id'] ?></td>
-                        <td><?= $rsG['Alias_name'] ?></td>
                     </tr>
                     <?php } ?>
                 </tbody>
@@ -273,7 +265,6 @@ if ($assocResults) {
 <div class="container_end_searchresults">
 </div>
 
-<p class="button"><a href="index.php?new=1">New Search</a></p>
 <script type="text/javascript">
     $(document).ready(function () {
         $('#dataTableGenes').DataTable();

@@ -42,9 +42,28 @@ if(!empty($data["Orphacode"])){
     }
 }
 
-// Fetch disease data
+// Fetch prevalence data
 $sqlPrevalence = "SELECT d.* FROM Prevalence d WHERE d.Disease_idDiseases='" . $_REQUEST['idDisease'] . "'";
 $rsPrevalence = mysqli_query($mysqli, $sqlPrevalence);
+
+// Fetch symptoms data
+$sqlSymptom = "SELECT d.* FROM Symptom d WHERE d.Disease_idDiseases='" . $_REQUEST['idDisease'] . "'";
+$rsSymptom = mysqli_query($mysqli, $sqlSymptom);
+
+// Fetch gene data
+$sqlGene = "SELECT DISTINCT g.idGene,g.Name FROM Gene_has_Disease d, Gene g 
+    WHERE d.Disease_idDiseases='" . $_REQUEST['idDisease'] . "'" .
+    " AND g.idGene = d.Gene_idGene";
+$rsGene = mysqli_query($mysqli, $sqlGene);
+
+//Fetch association data
+$sqlAssoc = "SELECT a.Name, c.Country_name FROM Disease_has_Patient_Association d, Patient_Association a,  Country_has_Patient_Association h, Country c
+    WHERE d.Diseases_idDiseases='" . $_REQUEST['idDisease'] . "' " .
+    "AND a.idPatient_Associations= d.Patient_Associations_idPatient_Associations ". 
+    "AND h.Patient_Association_idPatient_Associations = a.idPatient_Associations ".
+    "AND c.idCountry = h.Country_idCountry";
+$rsAssoc = mysqli_query($mysqli, $sqlAssoc);
+
 
 ?>
 
@@ -65,21 +84,25 @@ $rsPrevalence = mysqli_query($mysqli, $sqlPrevalence);
         <?php if(!empty($aliasIDs)): ?>  
             <p class="result_item"><b>Disease alias:</b> <?= implode(", ", $aliasIDs); ?></p> 
         <?php endif; ?>  
-        
+        <?php if(!empty($data["Description"])): ?>  
+            <p class="result_item"><b>Description:</b> <?=$data["Description"]?></p> 
+        <?php endif; ?>  
     </div>
     <div class="container_results">
         <h2 class="title_results">Prevalence</h2>
         <?php if(!empty($rsPrevalence)): ?> 
-            <table class="rounded-table">
-                <tbody> 
+            <table class="rounded-table" id="dataTablePrevalence">
+                <thead>
                     <tr class="row">
-                        <td>Source</td>
-                        <td>Prevalence Type</td>
-                        <td>Prevalence</td>
-                        <td>Geographic</td>
-                        <td>ValMoy</td>
-                        <td>Validation Status</td>
+                        <th>Source</th>
+                        <th>Prevalence Type</th>
+                        <th>Prevalence</th>
+                        <th>Geographic</th>
+                        <th>ValMoy</th>
+                        <th>Validation Status</th>
                     </tr>
+                </thead>
+                <tbody>
                     <?php while ($row = mysqli_fetch_assoc($rsPrevalence)): ?>
                         <tr class="row">
                             <td><?=$row["Source"]?></td>
@@ -94,7 +117,63 @@ $rsPrevalence = mysqli_query($mysqli, $sqlPrevalence);
             </table>
         <?php endif; ?>
     </div>
-    
+    <div class="container_results">
+        <h2 class="title_results">Symptoms</h2>
+        <?php if(!empty($rsSymptom)): ?>
+            <table class="rounded-table" id="dataTableSymptoms">
+                <thead>
+                    <tr class="row">
+                        <th>Symptom</th>
+                        <th>Frequency</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php while ($symptom = mysqli_fetch_assoc($rsSymptom)): ?>
+                        <tr class="row">
+                            <td><?=ucfirst($symptom["Name"])?></td>
+                            <td><?=ucfirst($symptom["Frequency"])?></td>
+                        </tr>
+                    <?php endwhile; ?>
+                </tbody>
+            </table>
+        <?php endif; ?>
+    </div>
+
+    <div class="container_results">
+        <h2 class="title_results">Causal genes</h2>
+        <?php if (!empty($rsGene)): ?>
+            <?php while ($gene = mysqli_fetch_assoc($rsGene)): ?>
+                <p><b><a href="getGene.php?idGene=<?= $gene['idGene'] ?>" target="_blank"><?= ucfirst($gene['Name']) ?></a></b></p>
+                <?php
+                    $sqlMutation = "SELECT g.* FROM Gene_has_Disease g WHERE g.Disease_idDiseases='" . $_REQUEST['idDisease'] . "'". "AND g.Gene_idGene='" . $gene["idGene"] . "'" . "AND g.idMutation != 0";
+                    $rsMutation = mysqli_query($mysqli, $sqlMutation);
+                ?>
+                <?php if ($rsMutation && mysqli_num_rows($rsMutation) > 0):?>
+                    <table class="rounded-table">
+                        <thead>
+                            <th>Mutation name</th>
+                            <th>Mutation type</th>
+                            <th>Gene position</th>
+                            <th>Protein position</th>
+                            <th>Effect</th>
+                        </thead>
+                        <tbody>
+                            <?php while ($mutation = mysqli_fetch_assoc($rsMutation)): ?>
+                            <tr class="row">
+                                <td><?=$mutation["Mutation_name"]?></td>
+                                <td><?=$mutation["Mutation_type"]?></td>
+                                <td><?=$mutation["Gene_position"]?></td>
+                                <td><?=$mutation["Protein_position"]?></td>
+                                <td><?=$mutation["Effect"]?></td>
+                            </tr>
+                            <?php endwhile; ?>
+                        </tbody>
+                    </table>
+                <?php endif; ?>
+            <?php endwhile; ?>
+        <?php endif; ?>
+    </div>
+
 
     
     <div class="container_coments">
@@ -108,6 +187,10 @@ $rsPrevalence = mysqli_query($mysqli, $sqlPrevalence);
     </div>
 </div>
 
-<div class="container_end_results">
-</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#dataTablePrevalence').DataTable();
+        $('#dataTableSymptoms').DataTable();
+    });
+</script>
 <?= footerDBW()?>

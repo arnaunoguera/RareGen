@@ -103,6 +103,4 @@ while ($alias = mysqli_fetch_assoc($rsAlias)) {
     </div> 
 </div>
 
-<div class="container_end_results">
-</div>
 <?= footerDBW()?>
