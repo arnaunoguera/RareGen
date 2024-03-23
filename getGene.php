@@ -40,6 +40,7 @@ while ($alias = mysqli_fetch_assoc($rsAlias)) {
     $aliasIDs[] = $alias['Alias_name'];
 }
 
+// end controller section ===================================================================================
 ?>
 
 

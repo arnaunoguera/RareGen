@@ -53,13 +53,13 @@ function footerDBW() {
 <div class="modal-content">
   <span class="close" onclick="closeLoginModal()">&times;</span>
   <h2>Login</h2>
-  <form id="loginForm">
+  <form name="LoginForm" id="loginForm" action="login.php" method="POST">
     <label for="username">Username:</label>
     <input type="text" id="username" placeholder="Introduce your username" name="username">
     <label for="password">Password:</label>
     <div class="password-container">
       <input type="password" id="password1" placeholder="Introduce your password" name="password1" autocomplete="new-password">
-      <button type="button" class="show-password-button" onclick="togglePasswordVisibility("password1")">Show</button>
+      <button type="button" class="show-password-button" onclick="togglePasswordVisibility(&quot;password1&quot;)">Show</button>
     </div>
     <button style="margin-left: 25px" type="submit" class="submit-button">Login</button>
   </form>

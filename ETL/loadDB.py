@@ -34,7 +34,8 @@ for tab in (
     'Gene_has_Disease',
     'Patient_Association', 
     'Prevalence',
-    'Symptom'
+    'Symptom',
+    'Role'
     ):
     try:
         print("Cleaning {}".format(tab))
@@ -338,6 +339,16 @@ with open('../data/mutations.csv', 'r', newline='', encoding='utf-8') as file:
             #print(Gene_id,Disease_id,idMutation,Mutation_type,Mutation_name,gene_position,protein_position,effect, sep = ',')
             c.execute(sthEntryMutation, (Gene_id,Disease_id,idMutation,Mutation_type,Mutation_name,gene_position,protein_position,effect)) 
 print('Successfully read mutations file')
+
+## ROLES
+loggeduserRole = "INSERT INTO Role VALUES ('User', 1)"
+anonymousRole = "INSERT INTO Role VALUES ('Anonymous', 0)"
+adminRole = "INSERT INTO Role VALUES ('Admin', 2)"
+
+with connection.cursor() as c:
+    c.execute(loggeduserRole)
+    c.execute(anonymousRole)
+    c.execute(adminRole)
 
 connection.close()
 print('Success')

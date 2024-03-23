@@ -42,35 +42,29 @@ if ($_REQUEST['search']) {
     $query = $_REQUEST['search'];
     if ($geneSearch){
         $ORcondsGene = [];
-        foreach (array_merge([$query], explode(' ',$query)) as $wd){
-            if (strlen($wd) > 2){
-                foreach (array_values($geneFields) as $field) {
-                    $ORcondsGene[] = $field." like '%".$wd."%'";
-                    //$ORconds[] = "MATCH (" . $field . ") AGAINST ('" . $wd . "' "
-                    //        . "IN BOOLEAN MODE)";
-                }
+        if (strlen($query) > 2){
+            foreach (array_values($geneFields) as $field) {
+                $ORcondsGene[] = $field." like '%".$query."%'";
+                //$ORconds[] = "MATCH (" . $field . ") AGAINST ('" . $wd . "' "
+                //        . "IN BOOLEAN MODE)";
             }
         }
         $ANDcondsGene[] = "(" . join(" OR ", $ORcondsGene) . ")";
     }
     if ($diseaseSearch){
         $ORcondsDis = [];
-        foreach (array_merge([$query], explode(' ',$query)) as $wd){
-            if (strlen($wd) > 2){
-                foreach (array_values($diseaseFields) as $field) {
-                    $ORcondsDis[] = $field." like '%".$wd."%'";
-                }
+        if (strlen($query) > 2){
+            foreach (array_values($diseaseFields) as $field) {
+                $ORcondsDis[] = $field." like '%".$query."%'";
             }
         }
         $ANDcondsDis[] = "(" . join(" OR ", $ORcondsDis) . ")";
     }
     if ($assocSearch){
         $ORcondsAssoc = [];
-        foreach (array_merge([$query], explode(' ',$query)) as $wd){
-            if (strlen($wd) > 2){
-                foreach (array_values($associationFields) as $field) {
-                    $ORcondsAssoc[] = $field." like '%".$wd."%'";
-                }
+        if (strlen($query) > 2){
+            foreach (array_values($associationFields) as $field) {
+                $ORcondsAssoc[] = $field." like '%".$query."%'";
             }
         }
         $ANDcondsAssoc[] = "(" . join(" OR ", $ORcondsAssoc) . ")";
