@@ -52,9 +52,11 @@ if (isset($_REQUEST['new']) or !isset($_SESSION['queryData'])) {
 
       <div class="info">
         <h3>
-          <p>To search for a specific gene, type its name in the search bar and click on the GENE button.</p><br>
-          <p> To search for a specific disease, type its name in the search bar and click on the DISEASE button.</p><br>
-          <p> To search for a specific organization, type its name in the search bar and click on the ORGANIZATION button.</p>
+          <p> Welcome to Raregen! A database of rare diseases where you can find information about the symptoms, the prevalence, and the diagnosis methods, among other aspects, for each one of the illnesses.</p><br>
+          <p> Moreover, this page also contains information on the related genes, if known, and detected mutations that may have been found causal to these syndromes. </p><br>
+          <p> But it doesn’t end there, if you are a patient searching for information about a syndrome you have been diagnosed with, you might be glad to learn that this web page also contains information about different patient associations advocating for patients. </p><br>
+          <p> To search for any topic, you can just write on the search bar. Next to it, you will see a dropdown with different options: “All fields”, “Gene”, “Disease”, and “Organization”. If you want to obtain all the information about a given illness, you can use the “All fields” option and will get all the information relating to it. However, if you are more interested in something more specific, like a given gene, you can choose that option to obtain a more selected search.</p><br>
+          <p> We hope that your search proves to be informative and educative!</p>
         </h3>
       </div>
 
